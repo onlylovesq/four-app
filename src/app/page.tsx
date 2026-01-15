@@ -13,8 +13,8 @@
 // 创建 id、username、password 三个字段，给 table 起名字为 users，然后点击 review and create，然后点击 create
 // 这就创建好了，然后添加一些数据，点击 open table，然后点击 add record，添加2条数据后，点击 save changes
 // 操作数据库，利用第三方的一个库(@neondatabase/serverless)，可以理解为 orm
-import { neon } from "@neondatabase/serverless";
 import { revalidatePath } from "next/cache";
+import { neon } from "@neondatabase/serverless";
 const sql = neon(`${process.env.DATABASE_URL}`);
 
 export default async function Page() {
@@ -24,7 +24,7 @@ export default async function Page() {
     "use server";
     const username = formData.get("username");
     const password = formData.get("password");
-    await sql.query("INSERT INFO users (username, password) VALUES ($1, $2)", [
+    await sql.query("INSERT INTO users (username, password) VALUES ($1, $2)", [
       username,
       password,
     ]);
